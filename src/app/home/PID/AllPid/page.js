@@ -1,21 +1,14 @@
-'use client'
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { db } from '@/app/database/connect';
+export default async function Page() {
 
-export default function Page() {
-    const [pids, setPids] = useState([]);
+    const PID = await db.pID.findMany({
+        include: {
+            Event: true
+        }
+    })
 
-    useEffect(() => {
-        const fetchPids = async () => {
-            try {
-                const response = await fetch('/api/PID/AllPid');
-                const data = await response.json();
-                setPids(data);
-            } catch (error) {
-                console.error("Error fetching PIDs:", error);
-            }
-        };
-        fetchPids();
-    }, []);
+
     const getActiveEvents = (event) => {
         const eventNames = [
             { name: 'Event1', active: event.Event1 },
@@ -33,8 +26,8 @@ export default function Page() {
         <>
             <div className='text-center font-bold text-3xl py-10'>All PIDs</div>
             <div className='pids-list'>
-                {pids.length > 0 ? (
-                    pids.map((pid) => (
+                {PID.length > 0 ? (
+                    PID.map((pid) => (
                         <div key={pid.id} className='p-2 border-b'>
                             <h3 className='font-semibold text-xl'>PID: {pid.Pid}</h3>
                             <p>Name: {pid.Name}</p>

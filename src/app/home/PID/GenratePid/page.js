@@ -1,6 +1,17 @@
-import React from 'react'
+'use client'
+
+
+import React,{useState,useEffect} from 'react';
 
 export default function Page() {
+    const [formdata,setFormdata] = useState([])
+
+
+    useEffect(()=>{
+        const upload = async()=>{}
+    })
+
+
     return (
         <>
             <div className='text-center font-bold text-3xl py-2 my-2'>Generating Pid</div>
