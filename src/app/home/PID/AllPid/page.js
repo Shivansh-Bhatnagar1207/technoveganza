@@ -54,7 +54,7 @@ export default async function Page() {
                         </div>
                     ))
                 ) : (
-                    <p className='text-center'>Loading...</p>
+                    <p className='text-center'>No PID FOUND</p>
                 )}
             </div>
         </>

@@ -8,35 +8,38 @@ datasource db {
 }
 
 model Event {
-  EventID Int     @id @unique
-  Event1  Boolean
-  Event2  Boolean
-  Event3  Boolean
-  Event4  Boolean
-  Event5  Boolean
-  Event6  Boolean
-  Event7  Boolean
-  PID     PID     @relation(fields: [EventID], references: [id])
-  TID     TID?
+  EventID Int     @id @default(autoincrement())
+  Event1  Boolean @default(false)
+  Event2  Boolean @default(false)
+  Event3  Boolean @default(false)
+  Event4  Boolean @default(false)
+  Event5  Boolean @default(false)
+  Event6  Boolean @default(false)
+  Event7  Boolean @default(false)
+  pidInt Int  @unique
+  PID     PID     @relation(fields: [pidInt], references: [Pid])
 }
 
 model PID {
   id        Int      @id @default(autoincrement())
   Pid       Int      @unique
   Name      String
-  RollNo    String   @unique
-  Mobile    String   @unique
+  RollNo    String      @unique
+  Mobile    String      @unique
   Branch    String
   Course    String
   College   String
   Gender    String
   createdAt DateTime @default(now())
-  Event     Event?
-  TID       TID[]
+  Event Event?
+  TID       TID?     @relation(fields: [tidId], references: [id]) // Optional, can have a TID associated
+  tidId     Int?     // Foreign key field to reference TID
 }
 
 model TID {
   id    Int   @id @default(autoincrement())
-  Event Event @relation(fields: [id], references: [EventID])
-  PID   PID[]
+  PIDs  PID[] @relation // This establishes a one-to-many relationship with PID
 }
+
+
+

@@ -1,21 +1,17 @@
-'use client'
 
 
-import React,{useState,useEffect} from 'react';
-
+import React from 'react';
+import { createPID } from '@/app/action';
 export default function Page() {
-    const [formdata,setFormdata] = useState([])
 
 
-    useEffect(()=>{
-        const upload = async()=>{}
-    })
+
 
 
     return (
         <>
             <div className='text-center font-bold text-3xl py-2 my-2'>Generating Pid</div>
-            <form className="grid gap-5 px-10 grid-cols-2 place-items-center">
+            <form className="grid gap-5 px-10 grid-cols-2 place-items-center" action={createPID}>
                 <div>Name: &nbsp;
                     <input type="text" className='border-2 border-solid border-gray-500' name="Name" />
                 </div>
@@ -86,7 +82,7 @@ export default function Page() {
                 </label>
 
                 {/* Other checkboxes */}
-                <button className='col-span-2 bg-red-500 text-white font-bold px-10 py-4 rounded-xl  cursor-pointer'>Generate Pid</button>
+                <button className='col-span-2 bg-red-500 text-white font-bold px-10 py-4 rounded-xl  cursor-pointer' type='submit'>Generate Pid</button>
             </form>
         </>
     )
