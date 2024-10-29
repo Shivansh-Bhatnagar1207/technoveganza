@@ -16,13 +16,13 @@ model Event {
   Event5  Boolean @default(false)
   Event6  Boolean @default(false)
   Event7  Boolean @default(false)
-  pidInt Int  @unique
+  pidInt String  @unique
   PID     PID     @relation(fields: [pidInt], references: [Pid])
 }
 
 model PID {
   id        Int      @id @default(autoincrement())
-  Pid       Int      @unique
+  Pid       String      @unique
   Name      String
   RollNo    String      @unique
   Mobile    String      @unique
