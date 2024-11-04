@@ -4,9 +4,10 @@ import React from 'react';
 export default async function Page() {
   const TID = await db.tID.findMany({
     include: {
-      PID: true
+      PIDs: true
     }
   })
+  
   return (
     <>
       <div className='text-center font-bold text-3xl py-10'>
@@ -19,8 +20,8 @@ export default async function Page() {
               <h3 className='font-semibold text-xl'>TID: {tid.id}</h3>
               <div>
                 <p className="font-semibold">Associated PIDs:</p>
-                {tid.PID.length > 0 ? (
-                  tid.PID.map((pid) => (
+                {tid.PIDs.length > 0 ? (
+                  tid.PIDs.map((pid) => (
                     <p key={pid.id} className="ml-2">
                       {`PID: ${pid.Pid}, Name: ${pid.Name},RollNo : ${pid.RollNo}`}
                     </p>

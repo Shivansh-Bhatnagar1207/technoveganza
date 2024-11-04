@@ -7,18 +7,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Event {
-  EventID Int     @id @default(autoincrement())
-  Event1  Boolean @default(false)
-  Event2  Boolean @default(false)
-  Event3  Boolean @default(false)
-  Event4  Boolean @default(false)
-  Event5  Boolean @default(false)
-  Event6  Boolean @default(false)
-  Event7  Boolean @default(false)
-  pidInt String  @unique
-  PID     PID     @relation(fields: [pidInt], references: [Pid])
-}
+  model Event {
+    EventID Int     @id 
+    Event1  Boolean @default(false)
+    Event2  Boolean @default(false)
+    Event3  Boolean @default(false)
+    Event4  Boolean @default(false)
+    Event5  Boolean @default(false)
+    Event6  Boolean @default(false)
+    Event7  Boolean @default(false)
+    pidInt String  @unique
+    PID     PID     @relation(fields: [pidInt], references: [Pid])
+  }
 
 model PID {
   id        Int      @id @default(autoincrement())
@@ -32,13 +32,14 @@ model PID {
   Gender    String
   createdAt DateTime @default(now())
   Event Event?
-  TID       TID?     @relation(fields: [tidId], references: [id]) // Optional, can have a TID associated
-  tidId     Int?     // Foreign key field to reference TID
+  TID TID[]
 }
 
 model TID {
-  id    Int   @id @default(autoincrement())
-  PIDs  PID[] @relation // This establishes a one-to-many relationship with PID
+  id    String   @id @default(uuid())
+  tid String @unique
+  Event String @unique
+  PIDs  PID[]
 }
 
 
