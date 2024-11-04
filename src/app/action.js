@@ -1,13 +1,15 @@
 'use server'
 
+import { redirect } from "next/navigation";
 import { db } from "./database/connect"
 
 export async function createPID(formData) {
-    const count = await db.pID.count() + 20240001
+    let count = await db.pID.count() + 20240001
+    count = 'PID' + count
 
     await db.pID.create({
         data: {
-            Pid: (count).toString() || 0, // Default to 0 if PID is not provided
+            Pid: count || 0, // Default to 0 if PID is not provided
             Name: formData.get('Name') || '',
             RollNo: (formData.get('Rollno')) || '',
             Mobile: formData.get('Mobileno'),// Ensure RollNo is a string
@@ -29,6 +31,7 @@ export async function createPID(formData) {
             }
         },
     });
+    redirect('/home/PID')
 }
 export async function fetchPidData(PID) {
     // Ensure this function runs server-side only
@@ -41,10 +44,12 @@ export async function fetchPidData(PID) {
 
 export async function squard(formdata) {
 
+    let tidcount = await db.tID.count() + 20240001
+    tidcount = 'TID' + tidcount
 
     await db.tID.create({
         data: {
-            Event: "Event",
+            Event: formdata.get('event'),
             PIDs: {
                 connect: [
                     { Pid: (formdata.get('p1')) },
@@ -53,24 +58,28 @@ export async function squard(formdata) {
                     { Pid: (formdata.get('p4')) },
                 ]
             },
-            tid: 'test'
+            tid: tidcount
         }
     })
+    redirect('/home/TID')
 }
 
 
 export async function duo(formdata) {
+    let tidcount = await db.tID.count() + 20240001
+    tidcount = 'TID' + tidcount
 
     await db.tID.create({
         data: {
-            Event: "Event",
+            Event: formdata.get('event'),
             PIDs: {
                 connect: [
                     { Pid: (formdata.get('p1')) },
                     { Pid: (formdata.get('p2')) },
                 ]
             },
-            tid: 'test'
+            tid: tidcount
         }
     })
+    redirect('/home/TID')
 }

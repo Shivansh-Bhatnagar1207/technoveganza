@@ -1,4 +1,4 @@
-
+'use client'
 
 import React from 'react';
 import { createPID } from '@/app/action';
@@ -82,7 +82,7 @@ export default function Page() {
                 </label>
 
                 {/* Other checkboxes */}
-                <button className='col-span-2 bg-red-500 text-white font-bold px-10 py-4 rounded-xl  cursor-pointer' type='submit'>Generate Pid</button>
+                <button className='col-span-2 bg-red-500 text-white font-bold px-10 py-4 rounded-xl  cursor-pointer' type='submit' onClick={() => { alert('Form Submitted') }}>Generate Pid</button>
             </form>
         </>
     )

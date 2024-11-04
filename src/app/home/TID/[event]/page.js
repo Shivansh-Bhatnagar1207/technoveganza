@@ -1,10 +1,10 @@
-// /app/page.jsx
-
+'use client'
 import { duo, squard } from "@/app/action";
 import React from "react";
 
 export default function Page({ params }) {
   const { event } = React.use(params)
+
 
   return (
     <>
@@ -13,6 +13,7 @@ export default function Page({ params }) {
       </div>
       {event === "Event1" || event === "Event2" || event === "Event3" ?
         (<form className="grid gap-5 px-10 grid-cols-2 place-items-center" action={squard}>
+          <input type="hidden" name="event" value={event} />
           <div>Participant 1: &nbsp;
             <input type="text" className='border-2 border-solid border-gray-500' name="p1" />
           </div>
@@ -26,18 +27,19 @@ export default function Page({ params }) {
             <input type="text" className='border-2 border-solid border-gray-500' name="p4" />
           </div>
           {/* Other checkboxes */}
-          <button className='col-span-2 bg-red-500 text-white font-bold px-10 py-4 rounded-xl  cursor-pointer' type='submit'>Generate Team</button>
+          <button className='col-span-2 bg-red-500 text-white font-bold px-10 py-4 rounded-xl  cursor-pointer' type='submit' onClick={() => { alert('Form Submitted') }}>Generate Team</button>
         </form>)
         : (<form className="grid gap-5 px-10 grid-cols-2 place-items-center" action={duo}>
+          <input type="hidden" name="event" value={event} />
           <div>Participant 1: &nbsp;
             <input type="text" className='border-2 border-solid border-gray-500' name="p1" />
           </div>
           <div>Participant 2: &nbsp;
             <input type="text" className='border-2 border-solid border-gray-500' name="p2" />
           </div>
-          
+
           {/* Other checkboxes */}
-          <button className='col-span-2 bg-red-500 text-white font-bold px-10 py-4 rounded-xl  cursor-pointer' type='submit'>Generate Team</button>
+          <button className='col-span-2 bg-red-500 text-white font-bold px-10 py-4 rounded-xl  cursor-pointer' type='submit' onClick={() => { alert('Form Submitted') }}>Generate Team</button>
         </form>)}
     </>
   )
