@@ -2,17 +2,15 @@ import Card from '@/app/components/card'
 import React from 'react'
 
 export default function Page() {
-  const events = ['Event1', 'Event2', 'Event3', 'Event4', 'Event5', 'Event6', 'Event7',]
   return (
     <>
       <div>
-        TIDs
+        Team ID
       </div>
-      <div className='grid grid-cols-4 gap-10 py-5 place-items-center'>
-        {events.map((event) => (
-
-          <Card title={event} link={`/home/TID/${event}`} key={event} />
-        ))}
+      <div className='flex gap-10 justify-center'>
+        <Card title={'Genrate TID'} link={'/home/TID/GenrateTid'} />
+        <Card title={'Search TID'} link={'/home/TID/SearchTid'} />
+        <Card title={'All TID'} link={'/home/TID/AllTid'} />
       </div>
     </>
   )

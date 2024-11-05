@@ -9,10 +9,10 @@ export async function createPID(formData) {
 
     await db.pID.create({
         data: {
-            Pid: count || 0, 
+            Pid: count || 0,
             Name: formData.get('Name') || '',
             RollNo: (formData.get('Rollno')) || '',
-            Mobile: formData.get('Mobileno')|| '',
+            Mobile: formData.get('Mobileno') || '',
             Branch: formData.get('Branch') || '',
             Course: formData.get('Course') || '',
             College: formData.get('college') || '',
@@ -41,6 +41,18 @@ export async function fetchPidData(PID) {
     });
 }
 
+export async function fetchTidData(TID) {
+    return await db.tID.findUnique({
+        where: {
+            tid: TID
+        },
+        include: {
+            PIDs: true
+        }
+    })
+
+}
+
 
 export async function squard(selectedEvents) {
 
@@ -49,7 +61,7 @@ export async function squard(selectedEvents) {
 
     await db.tID.create({
         data: {
-            Event : selectedEvents[0],
+            Event: selectedEvents[0],
             PIDs: {
                 connect: [
                     { Pid: selectedEvents[1] },

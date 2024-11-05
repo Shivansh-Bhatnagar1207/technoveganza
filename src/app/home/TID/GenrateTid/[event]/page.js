@@ -12,7 +12,7 @@ export default async function Page({ params }) {
   return (
     <div>
       <h1>Events for {event}</h1>
-      {event === 'Event1' || event === 'Event2' || event === 'Event3' ? (<EventForm events={EVENTS} eventName = {event} />) : (<></>)}
+      {(event === 'Event1' || event === 'Event2' || event === 'Event3') ? (<EventForm events={EVENTS} eventName = {event} />) : (<></>)}
     </div>
   );
 }
