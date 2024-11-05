@@ -17,7 +17,7 @@ export default async function Page() {
         {TID.length > 0 ? (
           TID.map((tid) => (
             <div key={tid.id} className='p-2 border-b'>
-              <h3 className='font-semibold text-xl'>TID: {tid.id}</h3>
+              <h3 className='font-semibold text-xl'>TID: {tid.tid}</h3>
               <div>
                 <p className="font-semibold">Associated PIDs:</p>
                 {tid.PIDs.length > 0 ? (

@@ -9,10 +9,10 @@ export async function createPID(formData) {
 
     await db.pID.create({
         data: {
-            Pid: count || 0, // Default to 0 if PID is not provided
+            Pid: count || 0, 
             Name: formData.get('Name') || '',
             RollNo: (formData.get('Rollno')) || '',
-            Mobile: formData.get('Mobileno'),// Ensure RollNo is a string
+            Mobile: formData.get('Mobileno')|| '',
             Branch: formData.get('Branch') || '',
             Course: formData.get('Course') || '',
             College: formData.get('college') || '',
@@ -42,20 +42,20 @@ export async function fetchPidData(PID) {
 }
 
 
-export async function squard(formdata) {
+export async function squard(selectedEvents) {
 
     let tidcount = await db.tID.count() + 20240001
     tidcount = 'TID' + tidcount
 
     await db.tID.create({
         data: {
-            Event: formdata.get('event'),
+            Event : selectedEvents[0],
             PIDs: {
                 connect: [
-                    { Pid: (formdata.get('p1')) },
-                    { Pid: (formdata.get('p2')) },
-                    { Pid: (formdata.get('p3')) },
-                    { Pid: (formdata.get('p4')) },
+                    { Pid: selectedEvents[1] },
+                    { Pid: selectedEvents[2] },
+                    { Pid: selectedEvents[3] },
+                    { Pid: selectedEvents[4] },
                 ]
             },
             tid: tidcount
